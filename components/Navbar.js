@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export default function Navbar() {
   return (
-    <div className=" flex items-center bg-appSecondary z-10 text-appwhite fixed">
+    <div className=" flex items-center bg-appSecondary z-10 text-appwhite fixed font-sans">
       <div className="flex w-screen my-3 justify-between">
         <Link href="/home">
           <a className="text-white mx-20 font-semibold ease-in-out transform hover:scale-150 transition duration-500">

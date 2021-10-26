@@ -74,14 +74,14 @@ export default function Submit() {
             className="w-2/3 mb-3 mx-3 px-5 py-3 rounded-lg outline-none bg-appSecondary text-appwhite shadow-sm"
             name="title"
             id="title"
-            placeholder="Cool Project"
+            placeholder="AppWrite"
             {...register("title", {
               required: { value: true, message: "Title is required" },
             })}
           />
           <div className="w-2/3 m-1 flex flex-col items-start justify-start font-semibold">
             <label for="tags" className="text-textSecondary text-bold">
-              Tags
+              Tags (Comma separated tags)
             </label>
           </div>
           <input
@@ -89,14 +89,59 @@ export default function Submit() {
             className="w-2/3 mb-3 mx-3 px-5 py-3 rounded-lg outline-none bg-appSecondary text-appwhite shadow-sm"
             name="tags"
             id="tags"
-            placeholder="Enter comma separated tags"
+            placeholder="Flutter, Next.js, PHP, ..."
             {...register("tags", {
               required: { value: true, message: "Tags is required" },
             })}
           />
           <div className="w-2/3 m-1 flex flex-col items-start justify-start font-semibold">
+            <label for="tags" className="text-textSecondary text-bold">
+              Email
+            </label>
+          </div>
+          <input
+            type="text"
+            className="w-2/3 mb-3 mx-3 px-5 py-3 rounded-lg outline-none bg-appSecondary text-appwhite shadow-sm"
+            name="email"
+            id="email"
+            placeholder="mwa@appwrite.io"
+            {...register("email", {
+              required: { value: true, message: "Email is required" },
+            })}
+          />
+          <div className="w-2/3 m-1 flex flex-col items-start justify-start font-semibold">
+            <label for="url" className="text-textSecondary text-bold">
+              URL
+            </label>
+          </div>
+          <input
+            type="text"
+            className="w-2/3 mb-3 mx-3 px-5 py-3 rounded-lg outline-none bg-appSecondary text-appwhite shadow-sm"
+            name="url"
+            id="url"
+            placeholder="https://appwrite.io/"
+            {...register("url", {
+              required: { value: true, message: "url is required" },
+            })}
+          />
+          <div className="w-2/3 m-1 flex flex-col items-start justify-start font-semibold">
+            <label for="github" className="text-textSecondary text-bold">
+              Github Repository URL
+            </label>
+          </div>
+          <input
+            type="text"
+            className="w-2/3 mb-3 mx-3 px-5 py-3 rounded-lg outline-none bg-appSecondary text-appwhite shadow-sm"
+            name="github"
+            id="github"
+            placeholder="https://github.com/appwrite/appwrite"
+            {...register("github", {
+              required: { value: true, message: "url is required" },
+            })}
+          />
+          <div className="w-2/3 m-1 flex flex-col items-start justify-start font-semibold">
             <label for="desc" className="text-textSecondary text-bold">
-              Description
+              Description (Supports Markdown)
             </label>
           </div>
           <textarea
@@ -116,14 +161,14 @@ export default function Submit() {
           <div className="w-2/3 flex flex-row">
             <button
               type="submit"
-              className="bg-primary-solid m-3 p-3 w-1/2 rounded-lg shadow-sm text-appwhite"
+              className="bg-appwhite text-appPrimary m-3 p-3 w-1/2 rounded-lg shadow-sm "
               disabled={!isValid || !isDirty}
             >
               Save Changes
             </button>
             <button
               type="button"
-              className=" bg-primary-solid m-3 p-3 w-1/2 rounded-lg shadow-sm text-appwhite"
+              className=" bg-appwhite text-appPrimary m-3 p-3 w-1/2 rounded-lg shadow-sm"
               onClick={() => setPreview(!preview)}
             >
               {preview ? "Edit" : "Preview"}

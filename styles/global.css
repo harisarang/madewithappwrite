@@ -1,0 +1,47 @@
+h1 {
+  font-size: 2em !important;
+  font-weight: bolder !important;
+  margin-bottom: auto;
+  margin-top: auto;
+  color: #4caedb;
+}
+
+h2 {
+  font-size: 1.5em !important;
+  font-weight: bolder !important;
+  margin-bottom: auto;
+  margin-top: auto;
+  color: #4caedb;
+}
+
+h3 {
+  font-size: 1.17em !important;
+  font-weight: bolder !important;
+  margin-bottom: auto;
+  margin-top: auto;
+  color: #4caedb;
+}
+
+h4 {
+  font-size: 1em !important;
+  font-weight: bolder !important;
+  margin-bottom: auto;
+  margin-top: auto;
+  color: #4caedb;
+}
+
+h5 {
+  font-size: 0.83em !important;
+  font-weight: bolder !important;
+  margin-bottom: auto;
+  margin-top: auto;
+  color: #4caedb;
+}
+
+h6 {
+  font-size: 0.67em !important;
+  font-weight: bolder !important;
+  margin-bottom: auto;
+  margin-top: auto;
+  color: #4caedb;
+}

@@ -9,6 +9,7 @@ module.exports = {
       appwhite: "#C7D8EB",
       appSecondary: "#171D37",
       appPrimary: "#1C223A",
+      textSecondary: "#4CAEDB",
     },
   },
   variants: {

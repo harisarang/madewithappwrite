@@ -8,6 +8,7 @@
   "dependencies": {
     "appwrite": "^4.0.4",
     "next": "latest",
+    "node-appwrite": "^2.5.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-hook-form": "^7.17.5",

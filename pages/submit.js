@@ -5,14 +5,17 @@ import ReactMarkdown from "react-markdown";
 import { GoMarkGithub } from "react-icons/go";
 import { BiLink } from "react-icons/bi";
 import Image from "next/image";
+import { addProject } from "../lib/appwrite";
 
 export default function Submit() {
   const { register, handleSubmit, reset, watch, formState } = useForm({
     mode: "onChange",
   });
 
-  const updatePost = async ({ content, title, tags }) => {
-    reset({ content, title });
+  const updatePost = async (object) => {
+    console.log(object);
+    await addProject(object);
+    reset(object);
 
     toast.success("Created Post successfully");
   };
@@ -53,7 +56,7 @@ export default function Submit() {
             <div className="flex justify-center">
               <div className="rounded-lg w-1/2 m-3 p-10 outline-none text-appwhite shadow-sm">
                 <ReactMarkdown>
-                  {"# Description\n" + watch("content")}
+                  {"# Description\n" + watch("desc")}
                 </ReactMarkdown>
               </div>
               <div className="flex bg-appPrimary w-1/3 justify-center">
@@ -205,10 +208,10 @@ export default function Submit() {
           <textarea
             className="rounded-lg w-2/3 mb-3 mx-3 p-5 outline-none bg-appSecondary text-appwhite shadow-sm"
             rows="10"
-            name="content"
+            name="desc"
             id="desc"
             placeholder="Description about your project"
-            {...register("content", {
+            {...register("desc", {
               maxLength: { value: 2000, message: "Content is too long" },
               minLength: { value: 10, message: "Content is too small" },
               required: { value: true, message: "Content is required" },

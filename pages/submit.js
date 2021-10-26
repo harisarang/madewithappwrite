@@ -5,7 +5,7 @@ import ReactMarkdown from "react-markdown";
 import { GoMarkGithub } from "react-icons/go";
 import { BiLink } from "react-icons/bi";
 import Image from "next/image";
-import { addProject } from "../lib/appwrite";
+import api from "../lib/appwrite";
 
 export default function Submit() {
   const { register, handleSubmit, reset, watch, formState } = useForm({
@@ -14,9 +14,7 @@ export default function Submit() {
 
   const updatePost = async (object) => {
     console.log(object);
-    await addProject(object);
-    reset(object);
-
+    await api.createDocument("617834a42ee58", object, ["*"], ["*"]);
     toast.success("Created Post successfully");
   };
 

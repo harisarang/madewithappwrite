@@ -1,49 +1,50 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import ReactMarkdown from "react-markdown";
 import { GoMarkGithub } from "react-icons/go";
 import { BiLink } from "react-icons/bi";
 import Image from "next/image";
-import axios from "axios";
+import api from "../lib/appwrite";
 
 export default function Submit() {
   const { register, handleSubmit, watch, formState } = useForm({
     mode: "onChange",
   });
 
+  const [image, setImage] = useState(null);
+
   const updatePost = async (object) => {
     console.log(object);
-    axios({
-      baseURL: window.location.origin,
-      url: `/api/createProject?collectionID=${process.env.NEXT_PUBLIC_APPWRITE_PROJECT_COLLECTION}`,
-      data: object,
-      method: "POST",
-    })
-      .then(() => {
-        toast.success("Submitted successfully");
+    api
+      .createDocument(
+        process.env.NEXT_PUBLIC_APPWRITE_PROJECT_COLLECTION,
+        object,
+        ["*"],
+        ["*"]
+      )
+      .then((response) => {
+        console.log(response);
+        setImage(api.getFileView(response["$id"]));
+        toast.success("Sumbitted project successfully");
       })
-      .catch(() => {
-        toast.error("Unable to Submit");
+      .catch((err) => {
+        console.log(err);
+        toast.error("Unable to Submit project");
       });
   };
 
   const handleImage = (value) => {
     console.log(value);
-    axios({
-      baseURL: window.location.origin,
-      url: `/api/uploadImage?name=${value.name}`,
-      data: value,
-      headers: {
-        "Content-type": value.type,
-      },
-      method: "POST",
-    })
-      .then(() => {
-        toast.success("Submitted successfully");
+    api
+      .createFile(value)
+      .then((response) => {
+        console.log(response);
+        toast.success("Preview image added successfully");
       })
-      .catch(() => {
-        toast.error("Unable to Submit");
+      .catch((err) => {
+        console.log(err);
+        toast.error("Wrong file format");
       });
   };
 
@@ -59,12 +60,12 @@ export default function Submit() {
       <form onSubmit={handleSubmit(updatePost)}>
         {preview && (
           <div className="flex flex-col items-center justify-items-center">
-            <div>
-              <div className="w-2/3 mx-3 mb-3 px-10 py-5 rounded-lg outline-none text-textSecondary  text-3xl">
-                <h3>{watch("title")}</h3>
+            <div className="flex flex-row items-center justify-center">
+              <div className="w-full rounded-lg outline-none text-textSecondary text-center text-3xl">
+                <p className="font-bold text-4xl">{watch("title")}</p>
               </div>
             </div>
-            <div className="w-2/3 m-3 px-10 py-3 text-appwhite flex justify-center">
+            <div className="w-2/3 mb-3 my-3 mt-10 px-10 py-3 text-appwhite flex justify-center">
               {watch("tags")
                 .split(",")
                 .map((tag) => {
@@ -76,9 +77,14 @@ export default function Submit() {
                 })}
             </div>
             <Image
-              src="https://eiitsgowqlbvulpsadlu.supabase.in/storage/v1/object/sign/images/logo.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJpbWFnZXMvbG9nby5wbmciLCJpYXQiOjE2MzM4ODg0MTIsImV4cCI6MTk0OTI0ODQxMn0.84dDS-HB6bScz36SnzHnVrn9cxVMgJlhh7onctx4Wfo"
+              src={
+                image !== null
+                  ? image
+                  : "https://eiitsgowqlbvulpsadlu.supabase.in/storage/v1/object/sign/images/logo.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJpbWFnZXMvbG9nby5wbmciLCJpYXQiOjE2MzM4ODg0MTIsImV4cCI6MTk0OTI0ODQxMn0.84dDS-HB6bScz36SnzHnVrn9cxVMgJlhh7onctx4Wfo"
+              }
               width={500}
               height={500}
+              alt={watch("title")}
             />
             <div className="flex justify-center">
               <div className="rounded-lg w-1/2 m-3 p-10 outline-none text-appwhite shadow-sm">
@@ -279,7 +285,6 @@ export default function Submit() {
             className="w-2/3 mb-3 mx-3 px-5 py-3 rounded-lg outline-none bg-appSecondary text-appwhite shadow-sm"
             name="image"
             id="image"
-            required
             placeholder="Functions, Database, Users, ..."
             onChange={(event) => handleImage(event.currentTarget.files[0])}
           />

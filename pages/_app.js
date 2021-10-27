@@ -2,6 +2,7 @@ import { Toaster } from "react-hot-toast";
 import "tailwindcss/tailwind.css";
 import "../styles/global.css";
 import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -9,6 +10,7 @@ function MyApp({ Component, pageProps }) {
       <Navbar />
       <Component {...pageProps} />
       <Toaster />
+      <Footer />
     </div>
   );
 }

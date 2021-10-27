@@ -12,7 +12,7 @@ export default function Home() {
       .listDocuments(process.env.NEXT_PUBLIC_APPWRITE_PROJECT_COLLECTION)
       .then((response) => {
         console.log(response);
-        setProjects(response.documents);
+        setProjects([...response.documents.reverse()]);
       });
   }, []);
 
@@ -26,9 +26,10 @@ export default function Home() {
           return (
             <Link href={`/projects/${project.$id}`}>
               <div className="flex flex-col justify-center items-center border-textSecondary shadow-md border-2 rounded-3xl m-4 hover:cursor-pointer">
-                <div className="border-textSecondary border-b-2">
+                <div className="border-textSecondary border-b-2 mb-0 pb-0">
                   <Image
-                    src="https://eiitsgowqlbvulpsadlu.supabase.in/storage/v1/object/sign/images/logo.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJpbWFnZXMvbG9nby5wbmciLCJpYXQiOjE2MzM4ODg0MTIsImV4cCI6MTk0OTI0ODQxMn0.84dDS-HB6bScz36SnzHnVrn9cxVMgJlhh7onctx4Wfo"
+                    className="rounded-t-3xl"
+                    src={project.image ?? api.getFileView("6179a20071208").href}
                     width={200}
                     height={200}
                   />

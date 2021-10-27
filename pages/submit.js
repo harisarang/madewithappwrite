@@ -14,7 +14,20 @@ export default function Submit() {
 
   const [image, setImage] = useState(null);
 
+  useEffect(() => {
+    console.log(image);
+  }, [image]);
+
   const updatePost = async (object) => {
+    if (image !== null) {
+      Object.assign(object, {
+        image: image
+      })
+    } else {
+      Object.assign(object, {
+        image: "https://eiitsgowqlbvulpsadlu.supabase.in/storage/v1/object/sign/images/logo.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJpbWFnZXMvbG9nby5wbmciLCJpYXQiOjE2MzM4ODg0MTIsImV4cCI6MTk0OTI0ODQxMn0.84dDS-HB6bScz36SnzHnVrn9cxVMgJlhh7onctx4Wfo"
+      })
+    }
     console.log(object);
     api
       .createDocument(
@@ -25,7 +38,6 @@ export default function Submit() {
       )
       .then((response) => {
         console.log(response);
-        setImage(api.getFileView(response["$id"]));
         toast.success("Sumbitted project successfully");
       })
       .catch((err) => {
@@ -40,6 +52,7 @@ export default function Submit() {
       .createFile(value)
       .then((response) => {
         console.log(response);
+        setImage(api.getFileView(response["$id"]));
         toast.success("Preview image added successfully");
       })
       .catch((err) => {
@@ -79,7 +92,7 @@ export default function Submit() {
             <Image
               src={
                 image !== null
-                  ? image
+                  ? image.href
                   : "https://eiitsgowqlbvulpsadlu.supabase.in/storage/v1/object/sign/images/logo.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJpbWFnZXMvbG9nby5wbmciLCJpYXQiOjE2MzM4ODg0MTIsImV4cCI6MTk0OTI0ODQxMn0.84dDS-HB6bScz36SnzHnVrn9cxVMgJlhh7onctx4Wfo"
               }
               width={500}

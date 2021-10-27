@@ -8,9 +8,9 @@ export default async function getProjects(req, res) {
       console.log(response);
       res.status(200).json(response);
     } catch {
-      res.status(400);
+      res.send(400);
     }
   } else {
-    res.status(404);
+    res.send(404);
   }
 }

@@ -5,7 +5,6 @@ import ReactMarkdown from "react-markdown";
 import { GoMarkGithub } from "react-icons/go";
 import { BiLink } from "react-icons/bi";
 import Image from "next/image";
-import api from "../lib/appwrite";
 import axios from "axios";
 
 export default function Submit() {
@@ -69,7 +68,7 @@ export default function Submit() {
                 </ReactMarkdown>
               </div>
               <div className="flex bg-appPrimary w-1/3 justify-center">
-                <div className="flex flex-col justify-center bg-appSecondary mt-20 h-1/4 rounded-3xl">
+                <div className="flex flex-col justify-center bg-appSecondary mt-20 h-1/3 rounded-3xl">
                   <div className="text-appwhite mx-2 my-1 px-5 py-2">
                     <a href={watch("github")}>
                       <div className="flex items-center">
@@ -100,17 +99,17 @@ export default function Submit() {
                   </div>
                   <div className="text-appwhite m-2 px-5 py-2">
                     <p>Appwrite Features</p>
-                    <ul className="px-1">
+                    <div className="px-1 flex flex-row flex-wrap">
                       {watch("appwrite")
                         .split(",")
                         .map((appwrite) => {
                           return (
-                            <li className="text-appwhite mx-2 p-1 px-3 rounded-full">
+                            <div className="text-appwhite mx-2 p-1 px-3 rounded-full">
                               {appwrite}
-                            </li>
+                            </div>
                           );
                         })}
-                    </ul>
+                    </div>
                   </div>
                 </div>
               </div>

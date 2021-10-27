@@ -21,12 +21,12 @@ export default function Submit() {
   const updatePost = async (object) => {
     if (image !== null) {
       Object.assign(object, {
-        image: image
-      })
+        image: image,
+      });
     } else {
       Object.assign(object, {
-        image: "https://eiitsgowqlbvulpsadlu.supabase.in/storage/v1/object/sign/images/logo.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJpbWFnZXMvbG9nby5wbmciLCJpYXQiOjE2MzM4ODg0MTIsImV4cCI6MTk0OTI0ODQxMn0.84dDS-HB6bScz36SnzHnVrn9cxVMgJlhh7onctx4Wfo"
-      })
+        image: api.getFileView("6179a20071208").href,
+      });
     }
     console.log(object);
     api
@@ -90,11 +90,7 @@ export default function Submit() {
                 })}
             </div>
             <Image
-              src={
-                image !== null
-                  ? image.href
-                  : "https://eiitsgowqlbvulpsadlu.supabase.in/storage/v1/object/sign/images/logo.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJpbWFnZXMvbG9nby5wbmciLCJpYXQiOjE2MzM4ODg0MTIsImV4cCI6MTk0OTI0ODQxMn0.84dDS-HB6bScz36SnzHnVrn9cxVMgJlhh7onctx4Wfo"
-              }
+              src={image ?? api.getFileView("6179a20071208").href}
               width={500}
               height={500}
               alt={watch("title")}
@@ -136,17 +132,15 @@ export default function Submit() {
                     </a>
                   </div>
                   <div className="text-appwhite m-2 px-5 py-2">
-                    <p>Appwrite Features</p>
-                    <div className="px-1 flex flex-row flex-wrap">
-                      {watch("appwrite")
-                        .split(",")
-                        .map((appwrite) => {
-                          return (
-                            <div className="text-appwhite mx-2 p-1 px-3 rounded-full">
-                              {appwrite}
-                            </div>
-                          );
-                        })}
+                    <div className="px-1 flex flex-row flex-wrap flex-grow-0">
+                      {project.appwrite.split(",").map((appwrite) => {
+                        return (
+                          <div className="text-appwhite my-1 mx-2 p-1 px-3 rounded-full bg-appPrimary">
+                            <span className="text-textSecondary"># </span>
+                            <span>{appwrite}</span>
+                          </div>
+                        );
+                      })}
                     </div>
                   </div>
                 </div>

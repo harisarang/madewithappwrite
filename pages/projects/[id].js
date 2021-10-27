@@ -5,6 +5,7 @@ import ReactMarkdown from "react-markdown";
 import { GoMarkGithub } from "react-icons/go";
 import { BiLink } from "react-icons/bi";
 import Image from "next/image";
+import api from "../../lib/appwrite";
 
 export default function Project() {
   const router = useRouter();
@@ -15,19 +16,11 @@ export default function Project() {
   useEffect(() => {
     console.log(id);
     setLoading(true);
-    axios({
-      baseURL: window.location.origin,
-      url: `/api/getProject?collectionID=${process.env.NEXT_PUBLIC_APPWRITE_PROJECT_COLLECTION}&documentID=${id}`,
-      method: "GET",
-    })
-      .then((response) => {
-        console.log(response.data);
-        setProject(response.data);
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.log("Unable to fetch project", err);
-      });
+    api.getDocument(process.env.NEXT_PUBLIC_APPWRITE_PROJECT_COLLECTION, id).then((response) => {
+      console.log(response);
+      setProject(response);
+      setLoading(false);
+    });
   }, [id]);
 
   return !loading ? (

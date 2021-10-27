@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import ReactMarkdown from "react-markdown";
@@ -18,6 +18,25 @@ export default function Submit() {
       baseURL: window.location.origin,
       url: `/api/createProject?collectionID=${process.env.NEXT_PUBLIC_APPWRITE_PROJECT_COLLECTION}`,
       data: object,
+      method: "POST",
+    })
+      .then(() => {
+        toast.success("Submitted successfully");
+      })
+      .catch(() => {
+        toast.error("Unable to Submit");
+      });
+  };
+
+  const handleImage = (value) => {
+    console.log(value);
+    axios({
+      baseURL: window.location.origin,
+      url: `/api/uploadImage?name=${value.name}`,
+      data: value,
+      headers: {
+        "Content-type": value.type,
+      },
       method: "POST",
     })
       .then(() => {
@@ -143,6 +162,7 @@ export default function Submit() {
             className="w-2/3 mb-3 mx-3 px-5 py-3 rounded-lg outline-none bg-appSecondary text-appwhite shadow-sm"
             name="title"
             id="title"
+            required
             placeholder="AppWrite"
             {...register("title", {
               required: { value: true, message: "Title is required" },
@@ -158,6 +178,7 @@ export default function Submit() {
             className="w-2/3 mb-3 mx-3 px-5 py-3 rounded-lg outline-none bg-appSecondary text-appwhite shadow-sm"
             name="tags"
             id="tags"
+            required
             placeholder="Flutter, Next.js, PHP, ..."
             {...register("tags", {
               required: { value: true, message: "Tags is required" },
@@ -173,6 +194,7 @@ export default function Submit() {
             className="w-2/3 mb-3 mx-3 px-5 py-3 rounded-lg outline-none bg-appSecondary text-appwhite shadow-sm"
             name="email"
             id="email"
+            required
             placeholder="mwa@appwrite.io"
             {...register("email", {
               required: { value: true, message: "Email is required" },
@@ -187,6 +209,7 @@ export default function Submit() {
             type="text"
             className="w-2/3 mb-3 mx-3 px-5 py-3 rounded-lg outline-none bg-appSecondary text-appwhite shadow-sm"
             name="url"
+            required
             id="url"
             placeholder="https://appwrite.io/"
             {...register("url", {
@@ -202,6 +225,7 @@ export default function Submit() {
             type="text"
             className="w-2/3 mb-3 mx-3 px-5 py-3 rounded-lg outline-none bg-appSecondary text-appwhite shadow-sm"
             name="github"
+            required
             id="github"
             placeholder="https://github.com/appwrite/appwrite"
             {...register("github", {
@@ -218,6 +242,7 @@ export default function Submit() {
             rows="10"
             name="desc"
             id="desc"
+            required
             placeholder="Description about your project"
             {...register("desc", {
               maxLength: { value: 2000, message: "Content is too long" },
@@ -235,6 +260,7 @@ export default function Submit() {
             className="w-2/3 mb-3 mx-3 px-5 py-3 rounded-lg outline-none bg-appSecondary text-appwhite shadow-sm"
             name="appwrite"
             id="appwrite"
+            required
             placeholder="Functions, Database, Users, ..."
             {...register("appwrite", {
               required: {
@@ -242,6 +268,20 @@ export default function Submit() {
                 message: "Appwrite features is required",
               },
             })}
+          />
+          <div className="w-2/3 m-1 flex flex-col items-start justify-start font-semibold">
+            <label for="image" className="text-textSecondary text-bold">
+              Preview Image
+            </label>
+          </div>
+          <input
+            type="file"
+            className="w-2/3 mb-3 mx-3 px-5 py-3 rounded-lg outline-none bg-appSecondary text-appwhite shadow-sm"
+            name="image"
+            id="image"
+            required
+            placeholder="Functions, Database, Users, ..."
+            onChange={(event) => handleImage(event.currentTarget.files[0])}
           />
           {errors.content && (
             <p className=" text-appwhite">{errors.content.message}</p>

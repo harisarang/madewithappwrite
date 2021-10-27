@@ -6,16 +6,28 @@ import { GoMarkGithub } from "react-icons/go";
 import { BiLink } from "react-icons/bi";
 import Image from "next/image";
 import api from "../lib/appwrite";
+import axios from "axios";
 
 export default function Submit() {
-  const { register, handleSubmit, reset, watch, formState } = useForm({
+  const { register, handleSubmit, watch, formState } = useForm({
     mode: "onChange",
   });
 
   const updatePost = async (object) => {
     console.log(object);
-    await api.createDocument("617834a42ee58", object, ["*"], ["*"]);
-    toast.success("Created Post successfully");
+    console.log(process.env.NEXT_PUBLIC_APPWRITE_PROJECT_COLLECTION);
+    axios({
+      baseURL: window.location.origin,
+      url: `/api/createPost?collectionID=${process.env.NEXT_PUBLIC_APPWRITE_PROJECT_COLLECTION}`,
+      data: object,
+      method: "POST",
+    })
+      .then(() => {
+        toast.success("Submitted successfully");
+      })
+      .catch(() => {
+        toast.error("Unable to Submit");
+      });
   };
 
   const [preview, setPreview] = useState(false);

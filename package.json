@@ -7,6 +7,7 @@
   },
   "dependencies": {
     "appwrite": "^4.0.4",
+    "axios": "^0.24.0",
     "next": "latest",
     "node-appwrite": "^2.5.1",
     "react": "^17.0.2",

@@ -15,10 +15,9 @@ export default function Submit() {
 
   const updatePost = async (object) => {
     console.log(object);
-    console.log(process.env.NEXT_PUBLIC_APPWRITE_PROJECT_COLLECTION);
     axios({
       baseURL: window.location.origin,
-      url: `/api/createPost?collectionID=${process.env.NEXT_PUBLIC_APPWRITE_PROJECT_COLLECTION}`,
+      url: `/api/createProject?collectionID=${process.env.NEXT_PUBLIC_APPWRITE_PROJECT_COLLECTION}`,
       data: object,
       method: "POST",
     })

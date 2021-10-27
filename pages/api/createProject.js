@@ -5,11 +5,11 @@ export default async function createProject(req, res) {
     const { collectionID } = req.query;
     try {
       await api.createDocument(collectionID, req.body, ["*"], ["*"]);
-      res.send(200);
+      res.status(200).json({ message: "Success" });
     } catch {
-      res.send(400);
+      res.status(400).json({ message: "Failed" });
     }
   } else {
-    res.send(404);
+    res.status(404).json({ message: "Not a POST request" });
   }
 }

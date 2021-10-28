@@ -17,7 +17,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen py-2 bg-appPrimary pt-44">
+    <div className="flex flex-col items-center justify-center min-h-screen py-2 bg-primary pt-44">
       <div className="text-appwhite font-mono font-extrabold text-4xl w-2/3 text-center">
         Made with Appwrite
       </div>

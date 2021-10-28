@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export default function Navbar() {
   return (
-    <div className=" flex items-center bg-appSecondary z-10 text-appwhite fixed font-sans">
+    <div className=" flex items-center bg-primary z-10 text-appwhite font-sans">
       <div className="flex w-screen my-3 justify-between">
         <Link href="/">
           <a className="text-white mx-20 font-semibold ease-in-out transform hover:scale-150 transition duration-500">
@@ -30,7 +30,7 @@ export default function Navbar() {
         </Link>
         <Link href={"/submit"}>
           <div className="flex justify-items-center items-center mx-10">
-            <a className="text-appSecondary mx-3 bg-appwhite rounded-full py-2 hover:cursor-pointer">
+            <a className="text-white font-bold mx-3 bg-gradient-to-bl from-box-start to-box-end rounded-lg py-2 hover:cursor-pointer">
               <p className="mx-3">Submit a project</p>
             </a>
           </div>

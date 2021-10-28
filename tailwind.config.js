@@ -10,10 +10,18 @@ module.exports = {
       appSecondary: "#171D37",
       appPrimary: "#1C223A",
       textSecondary: "#4CAEDB",
+      primary: "#1D2238",
+      secondary: "#141827",
+      box: {
+        start: "#78C2E5",
+        end: "#4E8BA8",
+        solid: "#67B8E0",
+      },
+      white: "#FFFFFF",
     },
   },
   variants: {
-    extend: {},
+    animation: ["responsive", "motion-safe", "motion-reduce"],
   },
   plugins: [],
 };

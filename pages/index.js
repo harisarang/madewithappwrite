@@ -46,21 +46,36 @@ export default function Home() {
           </svg>
         </span>
       </div>
-      <div className="flex flex-wrap flex-row mt-16 w-2/3 items-center justify-center">
+      <div className="flex flex-wrap flex-row mt-16 w-full items-center justify-center">
         {projects.map((project) => {
           return (
             <Link href={`/projects/${project.$id}`}>
-              <div className="flex flex-col justify-center items-center border-textSecondary shadow-md border-2 rounded-3xl m-4 hover:cursor-pointer">
-                <div className="border-textSecondary border-b-2 mb-0 pb-0">
+              <div className="flex flex-col justify-center bg-secondary shadow-lg rounded-lg m-10 hover:cursor-pointer ">
+                <div className="mb-0 pb-0 relative w-full m-auto">
                   <Image
-                    className="rounded-t-3xl"
+                    className="rounded-t-lg"
                     src={project.image ?? api.getFileView("6179a20071208").href}
-                    width={200}
-                    height={200}
+                    width={350}
+                    height={300}
+                    objectFit="cover"
                   />
                 </div>
-                <div className="text-appwhite font-bold text-lg p-5">
-                  {project.title}
+                <div className="text-white p-5">
+                  <div className="flex mx-5 my-2">
+                    <div className="text-2xl font-bold">{project.title}</div>
+                  </div>
+                  <div className="flex flex-wrap ">
+                    {project.tags
+                      .split(",")
+                      .slice(0, 3)
+                      .map((tag) => {
+                        return (
+                          <div className="text-white p-2 px-5 bg-primary rounded-lg mx-3 my-2">
+                            <p className="text-white">{tag}</p>
+                          </div>
+                        );
+                      })}
+                  </div>
                 </div>
               </div>
             </Link>

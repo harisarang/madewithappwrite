@@ -32,7 +32,7 @@ export default function PostView({ project }) {
           </a>
         </div>
       </div>
-      <div className="flex justify-center">
+      <div className="flex justify-center w-screen">
         <div className="flex flex-col w-1/2 m-3 p-10 outline-none text-white bg-secondary shadow-lg rounded-3xl mr-16">
           <div className="flex flex-wrap ">
             {project.tags.split(",").map((tag) => {
@@ -43,7 +43,7 @@ export default function PostView({ project }) {
               );
             })}
           </div>
-          <div className="mt-5">
+          <div className="mt-5 w-2/3">
             <ReactMarkdown>{"# Description\n" + project.desc}</ReactMarkdown>
           </div>
         </div>

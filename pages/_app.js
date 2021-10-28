@@ -19,7 +19,14 @@ function MyApp({ Component, pageProps }) {
     <div>
       <Navbar />
       <Component {...pageProps} />
-      <Toaster />
+      <Toaster
+        toastOptions={{
+          style: {
+            background: "#141827",
+            color: "#ffffff",
+          },
+        }}
+      />
       <Footer />
     </div>
   );

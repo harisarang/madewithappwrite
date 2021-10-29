@@ -43,7 +43,7 @@ export default function PostView({ project }) {
               );
             })}
           </div>
-          <div className="mt-5 w-2/3">
+          <div className="mt-5">
             <ReactMarkdown>{"# Description\n" + project.desc}</ReactMarkdown>
           </div>
         </div>

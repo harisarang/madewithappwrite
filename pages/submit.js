@@ -14,8 +14,8 @@ export default function Submit() {
   const router = useRouter();
 
   useEffect(() => {
-    console.log(image);
-  }, [image]);
+    console.log(errors);
+  }, [errors]);
 
   const updatePost = async (object) => {
     if (image !== null) {
@@ -33,7 +33,7 @@ export default function Submit() {
         process.env.NEXT_PUBLIC_APPWRITE_PROJECT_COLLECTION,
         object,
         ["*"],
-        ["*"]
+        image["*"]
       )
       .then((response) => {
         console.log(response);
@@ -124,6 +124,11 @@ export default function Submit() {
               required: { value: true, message: "Title is required" },
             })}
           />
+          {errors.title && (
+            <div className="flex items-start justify-start w-2/3 mb-5">
+              <p className=" text-white">🚨 {errors.title.message}</p>
+            </div>
+          )}
           <div className="w-2/3 m-1 flex flex-col items-start justify-start font-semibold">
             <label for="tags" className="text-white text-bold">
               Tags (Comma separated tags)
@@ -140,6 +145,11 @@ export default function Submit() {
               required: { value: true, message: "Tags is required" },
             })}
           />
+          {errors.tags && (
+            <div className="flex items-start justify-start w-2/3 mb-5">
+              <p className=" text-white">🚨 {errors.tags.message}</p>
+            </div>
+          )}
           <div className="w-2/3 m-1 flex flex-col items-start justify-start font-semibold">
             <label for="tags" className="text-white text-bold">
               Email
@@ -156,6 +166,11 @@ export default function Submit() {
               required: { value: true, message: "Email is required" },
             })}
           />
+          {errors.email && (
+            <div className="flex items-start justify-start w-2/3 mb-5">
+              <p className=" text-white">🚨 {errors.email.message}</p>
+            </div>
+          )}
           <div className="w-2/3 m-1 flex flex-col items-start justify-start font-semibold">
             <label for="url" className="text-white text-bold">
               URL
@@ -169,9 +184,14 @@ export default function Submit() {
             id="url"
             placeholder="https://appwrite.io/"
             {...register("url", {
-              required: { value: true, message: "url is required" },
+              required: { value: true, message: "URL is required" },
             })}
           />
+          {errors.url && (
+            <div className="flex items-start justify-start w-2/3 mb-5">
+              <p className=" text-white">🚨 {errors.url.message}</p>
+            </div>
+          )}
           <div className="w-2/3 m-1 flex flex-col items-start justify-start font-semibold">
             <label for="github" className="text-white text-bold">
               Github Repository URL
@@ -188,6 +208,11 @@ export default function Submit() {
               required: { value: true, message: "Github URL is required" },
             })}
           />
+          {errors.github && (
+            <div className="flex items-start justify-start w-2/3 mb-5">
+              <p className=" text-white">🚨 {errors.github.message}</p>
+            </div>
+          )}
           <div className="w-2/3 m-1 flex flex-col items-start justify-start font-semibold">
             <label for="desc" className="text-white text-bold">
               Description (Supports Markdown)
@@ -201,11 +226,15 @@ export default function Submit() {
             required
             placeholder="Description about your project"
             {...register("desc", {
-              maxLength: { value: 2000, message: "Content is too long" },
-              minLength: { value: 10, message: "Content is too small" },
-              required: { value: true, message: "Content is required" },
+              minLength: { value: 10, message: "Description is too small" },
+              required: { value: true, message: "Description is required" },
             })}
           ></textarea>
+          {errors.desc && (
+            <div className="flex items-start justify-start w-2/3 mb-5">
+              <p className=" text-white">🚨 {errors.desc.message}</p>
+            </div>
+          )}
           <div className="w-2/3 m-1 flex flex-col items-start justify-start font-semibold">
             <label for="appwrite" className="text-white text-bold">
               Appwrite features (Comma separated)
@@ -225,6 +254,11 @@ export default function Submit() {
               },
             })}
           />
+          {errors.appwrite && (
+            <div className="flex items-start justify-start w-2/3 mb-5">
+              <p className=" text-white">🚨 {errors.appwrite.message}</p>
+            </div>
+          )}
           <div className="w-2/3 m-1 flex flex-col items-start justify-start font-semibold">
             <label for="image" className="text-white text-bold">
               Preview Image
@@ -235,12 +269,8 @@ export default function Submit() {
             className="w-2/3 mb-3 mx-3 px-5 py-3 rounded-lg outline-none bg-secondary text-white shadow-sm"
             name="image"
             id="image"
-            placeholder="Functions, Database, Users, ..."
             onChange={(event) => handleImage(event.currentTarget.files[0])}
           />
-          {errors.content && (
-            <p className=" text-white">{errors.content.message}</p>
-          )}
           <div className="w-2/3 flex flex-row">
             <button
               type="submit"

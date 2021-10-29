@@ -1,29 +1,29 @@
-# Next.js + Tailwind CSS Example
+# Made with Appwite 💙
 
-This example shows how to use [Tailwind CSS](https://tailwindcss.com/) [(v2.2)](https://blog.tailwindcss.com/tailwindcss-2-2) with Next.js. It follows the steps outlined in the official [Tailwind docs](https://tailwindcss.com/docs/guides/nextjs).
+This project can be used to collect information about projects which are built using Appwrite and can also be a place of a showcase for such projects 🥇
 
-It uses the new [`Just-in-Time Mode`](https://tailwindcss.com/docs/just-in-time-mode) for Tailwind CSS.
+You can find the website at [Made with Appwrite](https://madewithappwrite.vercel.app) 🚀
 
-## Preview
+<!-- 'Made with Appwrite' badge -->
+<a href="https://appwrite.io/" target="_blank" style="position: fixed;right: 18px;bottom: 18px;z-index: 999;">
+  <img style="width: 160px;" src="https://appwrite.io/images-ee/press/badge-black-button.svg" alt="Built with Appwrite">
+</a>
 
-Preview the example live on [StackBlitz](http://stackblitz.com/):
+![Made with Appwrite](http://appwrite.harisaran.live/v1/storage/files/617bc7775a9b8/view?project=6177889fa73b5)
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/vercel/next.js/tree/canary/examples/with-tailwindcss)
+## 💻 Tech Stack
+- Next.js
+- Appwrite
 
-## Deploy your own
+## 🎈 Appwrite features used in this project
+- Users
+- Database
+- Storage
 
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example):
+## ⁉️ What is Appwrite ?
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-tailwindcss&project-name=with-tailwindcss&repository-name=with-tailwindcss)
+[Appwrite](https://appwrite.io/) is a self-hosted solution that provides developers with a set of easy-to-use and integrate REST APIs to manage their core backend needs. Appwrite is also an open-source alternative to Google firebase.
 
-## How to use
+## Contributing
 
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example:
-
-```bash
-npx create-next-app --example with-tailwindcss with-tailwindcss-app
-# or
-yarn create next-app --example with-tailwindcss with-tailwindcss-app
-```
-
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
+Bug reports and pull requests via Github are welcome at Made with Appwrite

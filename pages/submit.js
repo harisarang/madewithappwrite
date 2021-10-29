@@ -13,10 +13,6 @@ export default function Submit() {
   const [image, setImage] = useState(null);
   const router = useRouter();
 
-  useEffect(() => {
-    console.log(errors);
-  }, [errors]);
-
   const updatePost = async (object) => {
     if (image !== null) {
       Object.assign(object, {
